@@ -1,0 +1,746 @@
+```css
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    overflow: hidden;
+}
+
+
+/* =========================
+   PANTALLA INICIAL
+========================= */
+
+.intro {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #fffdf0 0%,
+            #fff8d9 45%,
+            #f4e7b3 100%
+        );
+
+    transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
+}
+
+.intro.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.intro-content {
+    text-align: center;
+
+    animation: introAppear 1.5s ease;
+}
+
+.intro-heart {
+    font-size: 65px;
+
+    color: #d4aa16;
+
+    font-weight: 200;
+
+    margin-bottom: 20px;
+
+    animation: heartFloat 3s ease-in-out infinite;
+}
+
+.intro-small {
+    color: #75652a;
+
+    font-size: 19px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 28px;
+}
+
+
+/* Botón */
+
+#openButton {
+    border: 1px solid rgba(190, 150, 20, 0.5);
+
+    background: rgba(255, 255, 255, 0.45);
+
+    color: #80660b;
+
+    padding: 13px 30px;
+
+    border-radius: 30px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(5px);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+#openButton:hover {
+    transform: translateY(-3px);
+
+    background: rgba(255, 255, 255, 0.8);
+
+    box-shadow:
+        0 8px 25px rgba(160, 130, 20, 0.15);
+}
+
+
+/* =========================
+   ESCENA PRINCIPAL
+========================= */
+
+.scene {
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            #fffdf0 0%,
+            #fff9dc 35%,
+            #f8edbd 100%
+        );
+
+    opacity: 0;
+
+    transition: opacity 1.5s ease;
+}
+
+.scene.show {
+    opacity: 1;
+}
+
+
+/* Luz ambiental */
+
+.scene::before {
+    content: "";
+
+    position: absolute;
+
+    width: 550px;
+    height: 550px;
+
+    top: -300px;
+    right: -150px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 220, 80, 0.12);
+
+    filter: blur(30px);
+}
+
+.scene::after {
+    content: "";
+
+    position: absolute;
+
+    width: 450px;
+    height: 450px;
+
+    bottom: -250px;
+    left: -150px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 193, 7, 0.08);
+
+    filter: blur(30px);
+}
+
+
+/* =========================
+   MENSAJE
+========================= */
+
+.message {
+    position: relative;
+
+    z-index: 20;
+
+    text-align: center;
+
+    padding: 30px;
+
+    opacity: 0;
+
+    transform: translateY(25px);
+
+    transition:
+        opacity 2s ease 1s,
+        transform 2s ease 1s;
+}
+
+.scene.show .message {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+.small-text {
+    display: block;
+
+    margin-bottom: 18px;
+
+    font-size: 17px;
+
+    letter-spacing: 4px;
+
+    color: #b58b00;
+
+    text-transform: uppercase;
+}
+
+h1 {
+    color: #4c420f;
+
+    font-size: clamp(2.2rem, 5vw, 4.5rem);
+
+    font-weight: 500;
+
+    line-height: 1.15;
+
+    letter-spacing: -1px;
+}
+
+.line {
+    width: 70px;
+    height: 3px;
+
+    margin: 25px auto;
+
+    background: #e5b900;
+
+    border-radius: 10px;
+
+    transform: scaleX(0);
+
+    transition:
+        transform 1s ease 2.2s;
+}
+
+.scene.show .line {
+    transform: scaleX(1);
+}
+
+.message p {
+    color: #756b3c;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   DECORACIÓN SUPERIOR
+========================= */
+
+.romantic-decor {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+.sparkle {
+    position: absolute;
+
+    color: #d9ad22;
+
+    font-size: 18px;
+
+    opacity: 0.4;
+
+    animation:
+        sparkle 3s ease-in-out infinite;
+}
+
+.sparkle-1 {
+    top: 10%;
+    left: 18%;
+}
+
+.sparkle-2 {
+    top: 17%;
+    left: 31%;
+
+    font-size: 13px;
+
+    animation-delay: 1s;
+}
+
+.sparkle-3 {
+    top: 9%;
+    right: 20%;
+
+    font-size: 15px;
+
+    animation-delay: 1.8s;
+}
+
+.sparkle-4 {
+    top: 20%;
+    right: 32%;
+
+    font-size: 12px;
+
+    animation-delay: 2.5s;
+}
+
+.sparkle-5 {
+    top: 12%;
+    right: 12%;
+
+    font-size: 10px;
+
+    animation-delay: 1.4s;
+}
+
+.heart {
+    position: absolute;
+
+    top: 7%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: #d4a900;
+
+    font-size: 38px;
+
+    font-weight: 300;
+
+    opacity: 0.5;
+
+    animation:
+        heartFloat 4s ease-in-out infinite;
+}
+
+
+/* =========================
+   FLORES
+========================= */
+
+.flowers {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    z-index: 5;
+}
+
+.flower {
+    position: absolute;
+
+    bottom: -20px;
+
+    width: 100px;
+    height: 250px;
+
+    transform-origin: bottom center;
+
+    opacity: 0;
+
+    animation:
+        grow 2s ease-out forwards,
+        sway 4s ease-in-out infinite;
+}
+
+
+/* Tallo */
+
+.stem {
+    position: absolute;
+
+    bottom: 0;
+    left: 50%;
+
+    width: 5px;
+    height: 190px;
+
+    background:
+        linear-gradient(
+            to right,
+            #4c8b3c,
+            #78a94b
+        );
+
+    border-radius: 10px;
+
+    transform: translateX(-50%);
+}
+
+
+/* Hojas */
+
+.leaf {
+    position: absolute;
+
+    width: 45px;
+    height: 22px;
+
+    background: #6e9f43;
+
+    border-radius: 100% 0 100% 0;
+}
+
+.leaf.left {
+    bottom: 70px;
+    left: 5px;
+
+    transform: rotate(-30deg);
+}
+
+.leaf.right {
+    bottom: 110px;
+    right: 5px;
+
+    transform: rotate(30deg) scaleX(-1);
+}
+
+
+/* Cabeza */
+
+.flower-head {
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    width: 75px;
+    height: 75px;
+
+    transform: translateX(-50%);
+}
+
+
+/* Pétalos */
+
+.petal {
+    position: absolute;
+
+    width: 32px;
+    height: 48px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #ffe95c,
+            #f5c400
+        );
+
+    border-radius: 50%;
+
+    left: 50%;
+    top: 50%;
+
+    transform-origin: center bottom;
+
+    margin-left: -16px;
+    margin-top: -40px;
+}
+
+
+/* Posiciones */
+
+.petal:nth-child(1) {
+    transform: rotate(0deg) translateY(-18px);
+}
+
+.petal:nth-child(2) {
+    transform: rotate(45deg) translateY(-18px);
+}
+
+.petal:nth-child(3) {
+    transform: rotate(90deg) translateY(-18px);
+}
+
+.petal:nth-child(4) {
+    transform: rotate(135deg) translateY(-18px);
+}
+
+.petal:nth-child(5) {
+    transform: rotate(180deg) translateY(-18px);
+}
+
+.petal:nth-child(6) {
+    transform: rotate(225deg) translateY(-18px);
+}
+
+.petal:nth-child(7) {
+    transform: rotate(270deg) translateY(-18px);
+}
+
+.petal:nth-child(8) {
+    transform: rotate(315deg) translateY(-18px);
+}
+
+
+/* Centro de la flor */
+
+.center {
+    position: absolute;
+
+    width: 30px;
+    height: 30px;
+
+    top: calc(50% + 7px);
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background:
+        radial-gradient(
+            circle,
+            #8c6200,
+            #5c4000
+        );
+
+    border-radius: 50%;
+}
+
+
+/* =========================
+   PÉTALOS FLOTANTES
+========================= */
+
+.petals {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 8;
+
+    pointer-events: none;
+}
+
+.falling-petal {
+    position: absolute;
+
+    top: -30px;
+
+    width: 12px;
+    height: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffe95c,
+            #f2c400
+        );
+
+    border-radius: 100% 0 100% 0;
+
+    opacity: 0;
+
+    animation:
+        fall linear infinite;
+}
+
+
+/* =========================
+   ANIMACIONES
+========================= */
+
+@keyframes introAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes grow {
+
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    70% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+@keyframes sway {
+
+    0%,
+    100% {
+        margin-left: 0;
+
+        transform: rotate(-2deg);
+    }
+
+    50% {
+        margin-left: 8px;
+
+        transform: rotate(3deg);
+    }
+}
+
+
+@keyframes sparkle {
+
+    0%,
+    100% {
+        opacity: 0.2;
+
+        transform:
+            scale(0.8)
+            rotate(0deg);
+    }
+
+    50% {
+        opacity: 0.75;
+
+        transform:
+            scale(1.15)
+            rotate(20deg);
+    }
+}
+
+
+@keyframes heartFloat {
+
+    0%,
+    100% {
+        transform:
+            translateX(-50%)
+            translateY(0);
+
+        opacity: 0.35;
+    }
+
+    50% {
+        transform:
+            translateX(-50%)
+            translateY(-8px);
+
+        opacity: 0.65;
+    }
+}
+
+
+@keyframes fall {
+
+    0% {
+        transform:
+            translateY(-30px)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.7;
+    }
+
+    50% {
+        transform:
+            translateY(50vh)
+            translateX(30px)
+            rotate(180deg);
+    }
+
+    100% {
+        transform:
+            translateY(110vh)
+            translateX(-30px)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    .message p {
+        font-size: 16px;
+    }
+
+    .flower {
+        transform: scale(0.75);
+    }
+
+    .flower:nth-child(n + 6) {
+        display: none;
+    }
+
+    .sparkle {
+        font-size: 13px;
+    }
+}
+```
